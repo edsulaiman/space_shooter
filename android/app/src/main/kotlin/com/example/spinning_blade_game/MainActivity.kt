@@ -1,4 +1,4 @@
-package com.example.spinning_blade_game
+package com.example.space_shooter_game
 
 import io.flutter.embedding.android.FlutterActivity
 
