@@ -8,19 +8,27 @@ import 'game_entry.dart';
 import 'utils/spawn_util.dart';
 
 class GameWorld extends World with HasGameReference<GameEntry> {
-  late final Timer interval;
+  late final Timer spawnInterval;
+  late final Timer difficultyInterval;
 
   final Player player = Player();
 
-  final maxEnemySpawn = 30;
-  final enemyPerSpawn = 5;
+  int enemyPerSpawn = 5;
   final enemySpawnDistance = 1000.0;
 
   @override
   Future<void> onLoad() async {
-    interval = Timer(
-      5,
+    _spawnEnemy();
+
+    spawnInterval = Timer(
+      10,
       onTick: _spawnEnemy,
+      repeat: true,
+    );
+
+    difficultyInterval = Timer(
+      30,
+      onTick: () => enemyPerSpawn += 1,
       repeat: true,
     );
 
@@ -29,20 +37,15 @@ class GameWorld extends World with HasGameReference<GameEntry> {
 
   @override
   void update(double dt) {
-    interval.update(dt);
+    spawnInterval.update(dt);
+    difficultyInterval.update(dt);
+
     super.update(dt);
   }
 
   void _spawnEnemy() {
     final playerPosition = player.position;
-    final currentEnemyCount = children.whereType<Enemy>().length;
-
-    if (currentEnemyCount > maxEnemySpawn) {
-      return;
-    }
-
-    final enemyCount = enemyPerSpawn;
-    for (int i = 0; i < enemyCount; i++) {
+    for (int i = 0; i < enemyPerSpawn; i++) {
       final enemyPosition = SpawnUtil.getSpawnPosition(
         enemySpawnDistance,
         playerPosition,
