@@ -76,6 +76,9 @@ class Projectile<T> extends SpriteComponent
   @override
   void update(double dt) {
     _moveProjectile(dt);
+
+    destroyTimer.update(dt);
+
     super.update(dt);
   }
 
