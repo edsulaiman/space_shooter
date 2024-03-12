@@ -2,8 +2,8 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
-class Blast extends SpriteAnimationComponent {
-  Blast({required Vector2 position}) : super(position: position);
+class DieEffect extends SpriteAnimationComponent {
+  DieEffect({required Vector2 position}) : super(position: position);
 
   @override
   Future<void> onLoad() async {

@@ -3,7 +3,7 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
-import '../components/blast.dart';
+import '../components/die_effect.dart';
 import '../components/coin.dart';
 import '../game_entry.dart';
 import '../mixins/space_ship.dart';
@@ -63,7 +63,7 @@ class Enemy extends SpriteComponent
   void die() {
     removeFromParent();
 
-    final blast = Blast(position: position);
+    final blast = DieEffect(position: position);
     game.world.add(blast);
 
     final coinCount = 1 + SpawnUtil.random.nextInt(3);

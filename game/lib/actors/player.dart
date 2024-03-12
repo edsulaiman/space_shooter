@@ -5,7 +5,7 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
-import '../components/blast.dart';
+import '../components/die_effect.dart';
 import '../game_entry.dart';
 import '../mixins/space_ship.dart';
 import 'enemy.dart';
@@ -59,7 +59,7 @@ class Player extends SpriteComponent
   void die() {
     removeFromParent();
 
-    final blast = Blast(position: position);
+    final blast = DieEffect(position: position);
     game.world.add(blast);
 
     game.pauseEngine();

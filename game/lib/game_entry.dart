@@ -7,10 +7,13 @@ import 'package:flutter/material.dart';
 import 'components/fire_button.dart';
 import 'components/health_bar.dart';
 import 'components/joystick.dart';
+import 'game_provider.dart';
 import 'game_world.dart';
 
 class GameEntry extends FlameGame<GameWorld> with HasCollisionDetection {
-  GameEntry() : super(world: GameWorld());
+  GameEntry({required this.gameProvider}) : super(world: GameWorld());
+
+  final GameProvider gameProvider;
 
   final JoystickComponent joystick = Joystick();
 
@@ -35,10 +38,8 @@ class GameEntry extends FlameGame<GameWorld> with HasCollisionDetection {
       height: size.y / aspectRatio,
     );
 
-    // camera.backdrop.add(Background());
     camera.viewport.add(joystick);
     camera.viewport.add(FireButton());
     camera.viewport.add(HealthBar());
-    // camera.viewfinder.anchor = Anchor.topLeft;
   }
 }
