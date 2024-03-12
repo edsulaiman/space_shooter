@@ -1,0 +1,29 @@
+name: spinning_blade_game
+description: "A new Flutter project."
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.3.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  watt: ^2.1.2
+  witt: ^2.0.2
+  game:
+    path: ./game
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/images/joystick/
+    - assets/images/misc/
+    - assets/images/projectile/
+    - assets/images/ship/
+    - assets/images/
