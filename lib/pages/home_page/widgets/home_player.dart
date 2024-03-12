@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:witt/witt.dart';
 
-import '../../../game/game_provider.dart';
+import '../../../singletons/game_progress.dart';
 
 class HomePlayer extends StatelessWidget {
   const HomePlayer({super.key});
@@ -39,8 +39,6 @@ class _PlayerCoins extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final gameProvider = WProvider.of<GameProvider>(context);
-
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -53,9 +51,9 @@ class _PlayerCoins extends StatelessWidget {
         ),
         const SizedBox(width: 8),
         WListener(
-          notifiers: [gameProvider.coins],
+          notifiers: [GameProgress.instance.coins],
           builder: (context) {
-            final coins = gameProvider.coins.value;
+            final coins = GameProgress.instance.coins.value;
             return Text(coins.toString());
           },
         ),

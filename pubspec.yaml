@@ -9,6 +9,7 @@ environment:
 
 dependencies:
   flame: ^1.16.0
+  flame_audio: ^2.10.0
   flutter:
     sdk: flutter
   nes_ui: ^0.18.0
@@ -27,3 +28,4 @@ flutter:
     - assets/images/projectile/
     - assets/images/ship/
     - assets/images/
+    - assets/audio/

@@ -3,13 +3,14 @@ import 'dart:async';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 
+import '../../singletons/audio.dart';
 import '../game_entry.dart';
 import '../utils/spawn_util.dart';
 
 class Coin extends SpriteComponent with HasGameReference<GameEntry> {
   Coin({required Vector2 position}) : super(position: position);
 
-  final double speed = 1000;
+  final double speed = 1500;
   final double spawnDistance = 100;
 
   bool isChasingPlayer = false;
@@ -46,6 +47,7 @@ class Coin extends SpriteComponent with HasGameReference<GameEntry> {
     }
 
     if (distance <= 50) {
+      Audio.playCoinSfx();
       game.coinsCollected += 1;
       removeFromParent();
     }

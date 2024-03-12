@@ -4,6 +4,8 @@ import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 
+import '../../singletons/audio.dart';
+import '../actors/enemy.dart';
 import '../game_entry.dart';
 import '../mixins/space_ship.dart';
 
@@ -30,6 +32,7 @@ class Projectile<T> extends SpriteComponent
         );
 
   late Vector2 velocity;
+  late Timer destroyTimer;
 
   final String projectileType;
   final double speed;
@@ -37,6 +40,13 @@ class Projectile<T> extends SpriteComponent
 
   @override
   Future<void> onLoad() async {
+    destroyTimer = Timer(5, onTick: () => removeFromParent());
+
+    // Play sfx when this projectile target is enemy.
+    if (T == Enemy) {
+      Audio.playShootSfx();
+    }
+
     final image =
         await Flame.images.load("projectile/${projectileType}_projectile.png");
 
@@ -57,11 +67,6 @@ class Projectile<T> extends SpriteComponent
         break;
       default:
     }
-
-    Future.delayed(
-      const Duration(seconds: 5),
-      () => removeFromParent(),
-    );
 
     add(RectangleHitbox(collisionType: CollisionType.passive));
 

@@ -10,6 +10,8 @@ mixin SpaceShip<ProjectileTarget> on PositionComponent
     implements HasGameReference<GameEntry> {
   final SpawnBulletArea spawnBulletArea = SpawnBulletArea();
 
+  late Timer _firingCooldownTimer;
+
   /// Space ship max health.
   int maxHealth = 100;
 
@@ -36,12 +38,20 @@ mixin SpaceShip<ProjectileTarget> on PositionComponent
 
   @override
   FutureOr<void> onLoad() {
+    _firingCooldownTimer = Timer(
+      firingCooldown / 1000,
+      onTick: () => isFiringCooldown = false,
+      autoStart: false,
+    );
+
     add(spawnBulletArea);
   }
 
   @override
   void update(double dt) {
     _spawnProjectile();
+
+    _firingCooldownTimer.update(dt);
 
     if (health <= 0) {
       die();
@@ -73,9 +83,6 @@ mixin SpaceShip<ProjectileTarget> on PositionComponent
     game.world.add(projectile);
     isFiringCooldown = true;
 
-    Future.delayed(
-      Duration(milliseconds: firingCooldown),
-      () => isFiringCooldown = false,
-    );
+    _firingCooldownTimer.start();
   }
 }
