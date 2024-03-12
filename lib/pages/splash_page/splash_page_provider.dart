@@ -6,7 +6,7 @@ import '../../main_router.dart';
 class SplashPageProvider {
   SplashPageProvider(this.context) {
     Future.delayed(const Duration(seconds: 3), () {
-      AppRouter.pushNamed(MainRouter.homePath);
+      AppRouter.pushNamedAndRemoveAll(MainRouter.homePath);
     });
   }
 

@@ -3,8 +3,8 @@ import 'package:flame/components.dart';
 import 'package:flame/flame.dart';
 import 'package:flame/sprite.dart';
 
-import '../components/die_effect.dart';
 import '../components/coin.dart';
+import '../components/die_effect.dart';
 import '../game_entry.dart';
 import '../mixins/space_ship.dart';
 import '../utils/spawn_util.dart';

@@ -7,13 +7,10 @@ import 'package:flutter/material.dart';
 import 'components/fire_button.dart';
 import 'components/health_bar.dart';
 import 'components/joystick.dart';
-import 'game_provider.dart';
 import 'game_world.dart';
 
 class GameEntry extends FlameGame<GameWorld> with HasCollisionDetection {
-  GameEntry({required this.gameProvider}) : super(world: GameWorld());
-
-  final GameProvider gameProvider;
+  GameEntry() : super(world: GameWorld());
 
   final JoystickComponent joystick = Joystick();
 

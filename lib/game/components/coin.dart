@@ -46,7 +46,7 @@ class Coin extends SpriteComponent with HasGameReference<GameEntry> {
     }
 
     if (distance <= 50) {
-      game.gameProvider.coins.value += 1;
+      game.coinsCollected += 1;
       removeFromParent();
     }
   }

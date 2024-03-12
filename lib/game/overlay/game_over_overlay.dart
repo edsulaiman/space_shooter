@@ -24,13 +24,14 @@ class GameOverOverlay extends StatelessWidget {
         height: 300,
         padding: const EdgeInsets.all(16),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               "GAME OVER",
               style: textTheme.titleLarge,
             ),
             const SizedBox(height: 16),
-            const Text("COINS COLLECTED: 0"),
+            Text("COINS COLLECTED: ${game.coinsCollected}"),
             const SizedBox(height: 32),
             NesButton(
               onPressed: () => _onMainMenuPressed(context),
