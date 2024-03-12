@@ -19,6 +19,8 @@ class GameEntry extends FlameGame<GameWorld> with HasCollisionDetection {
 
   final aspectRatio = 9 / 16;
 
+  int coinsCollected = 0;
+
   @override
   Color backgroundColor() => Colors.black;
 

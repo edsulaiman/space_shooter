@@ -18,7 +18,7 @@ class Game extends StatelessWidget {
     return GameWidget(
       game: GameEntry(gameProvider: gameProvider),
       overlayBuilderMap: {
-        "gameOver": (context, game) => const GameOverOverlay(),
+        "gameOver": (context, game) => GameOverOverlay(game: game as GameEntry),
       },
     );
   }
