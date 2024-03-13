@@ -42,9 +42,10 @@ class Projectile<T> extends SpriteComponent
   Future<void> onLoad() async {
     destroyTimer = Timer(5, onTick: () => removeFromParent());
 
-    // Play sfx when this projectile target is enemy.
     if (T == Enemy) {
       Audio.playShootSfx();
+    } else {
+      Audio.playShoot2Sfx();
     }
 
     final image =
