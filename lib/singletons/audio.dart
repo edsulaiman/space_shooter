@@ -26,24 +26,26 @@ class Audio {
 
     instance.playerShootSfx = await FlameAudio.createPool(
       "shoot.mp3",
-      minPlayers: 50,
+      minPlayers: 10,
       maxPlayers: 100,
     );
 
     instance.enemyShootSfx = await FlameAudio.createPool(
       "shoot2.mp3",
-      minPlayers: 100,
-      maxPlayers: 500,
+      minPlayers: 10,
+      maxPlayers: 100,
     );
 
     instance.coinSfx = await FlameAudio.createPool(
       "score.mp3",
-      maxPlayers: 25,
+      minPlayers: 10,
+      maxPlayers: 100,
     );
 
     instance.explosiveSfx = await FlameAudio.createPool(
       "explosive.mp3",
-      maxPlayers: 25,
+      minPlayers: 10,
+      maxPlayers: 100,
     );
 
     await FlameAudio.bgm.play("tropical_fantasy.mp3", volume: .75);
