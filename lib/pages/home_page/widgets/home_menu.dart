@@ -3,6 +3,7 @@ import 'package:nes_ui/nes_ui.dart';
 
 import '../../../app_router.dart';
 import '../../../main_router.dart';
+import '../../../widgets/custom_nes_button.dart';
 
 class HomeMenu extends StatelessWidget {
   const HomeMenu({super.key});
@@ -11,13 +12,13 @@ class HomeMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        NesButton(
+        CustomNesButton(
           type: NesButtonType.primary,
           onPressed: () => AppRouter.pushNamedAndRemoveAll(MainRouter.gamePath),
           child: const Text("START"),
         ),
         const SizedBox(height: 16),
-        const NesButton(type: NesButtonType.normal, child: Text("SHOP")),
+        const CustomNesButton(type: NesButtonType.normal, child: Text("SHOP")),
       ],
     );
   }

@@ -4,6 +4,7 @@ import 'package:nes_ui/nes_ui.dart';
 import '../../app_router.dart';
 import '../../main_router.dart';
 import '../../singletons/game_progress.dart';
+import '../../widgets/custom_nes_button.dart';
 import '../game_entry.dart';
 
 class GameOverOverlay extends StatelessWidget {
@@ -34,7 +35,7 @@ class GameOverOverlay extends StatelessWidget {
               const SizedBox(height: 16),
               Text("COINS COLLECTED: ${game.coinsCollected}"),
               const SizedBox(height: 32),
-              NesButton(
+              CustomNesButton(
                 onPressed: () => _onMainMenuPressed(context),
                 type: NesButtonType.normal,
                 child: const Text('MAIN MEMU'),
