@@ -3,11 +3,12 @@ import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 
 class Joystick extends JoystickComponent {
-  Joystick()
-      : super(
+  Joystick({
+    required EdgeInsets margin,
+  }) : super(
           background: SpriteComponent(size: Vector2.all(200)),
           knob: SpriteComponent(size: Vector2.all(100)),
-          margin: const EdgeInsets.only(left: 50, bottom: 100),
+          margin: margin,
         );
 
   @override

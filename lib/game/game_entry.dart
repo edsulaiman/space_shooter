@@ -4,7 +4,6 @@ import 'package:flame/components.dart';
 import 'package:flame/game.dart';
 import 'package:flutter/material.dart';
 
-import 'components/fire_button.dart';
 import 'components/health_bar.dart';
 import 'components/joystick.dart';
 import 'game_world.dart';
@@ -12,7 +11,13 @@ import 'game_world.dart';
 class GameEntry extends FlameGame<GameWorld> with HasCollisionDetection {
   GameEntry() : super(world: GameWorld());
 
-  final JoystickComponent joystick = Joystick();
+  final JoystickComponent moveJoystick = Joystick(
+    margin: const EdgeInsets.only(left: 50, bottom: 100),
+  );
+
+  final JoystickComponent attackJoystick = Joystick(
+    margin: const EdgeInsets.only(right: 50, bottom: 100),
+  );
 
   final aspectRatio = 9 / 16;
 
@@ -37,8 +42,9 @@ class GameEntry extends FlameGame<GameWorld> with HasCollisionDetection {
       height: size.y / aspectRatio,
     );
 
-    camera.viewport.add(joystick);
-    camera.viewport.add(FireButton());
+    camera.viewport.add(moveJoystick);
+    camera.viewport.add(attackJoystick);
+
     camera.viewport.add(HealthBar());
   }
 }

@@ -12,7 +12,6 @@ import 'enemy.dart';
 
 class Player extends SpriteComponent
     with HasGameReference<GameEntry>, SpaceShip<Enemy> {
-  late final JoystickComponent joystick;
   late final SpriteSheet spriteSheet;
 
   @override
@@ -25,7 +24,7 @@ class Player extends SpriteComponent
   double projectileSpeed = 2000;
 
   @override
-  int firingCooldown = 100;
+  int firingCooldown = 200;
 
   @override
   bool isFiring = false;
@@ -37,7 +36,6 @@ class Player extends SpriteComponent
   Future<void> onLoad() async {
     final shipImage = await Flame.images.load("ship/player_ship.png");
     sprite = Sprite(shipImage);
-    joystick = game.joystick;
     size = Vector2.all(75);
     anchor = Anchor.center;
 
@@ -51,6 +49,7 @@ class Player extends SpriteComponent
   @override
   void update(double dt) {
     _movePlayer(dt);
+    _lauchAttack();
 
     super.update(dt);
   }
@@ -67,11 +66,21 @@ class Player extends SpriteComponent
   }
 
   void _movePlayer(double dt) {
-    if (joystick.direction == JoystickDirection.idle) {
+    if (game.moveJoystick.direction == JoystickDirection.idle) {
       return;
     }
 
-    position.add(joystick.relativeDelta * speed * dt);
-    angle = joystick.delta.screenAngle();
+    position.add(game.moveJoystick.relativeDelta * speed * dt);
+    angle = game.moveJoystick.delta.screenAngle();
+  }
+
+  void _lauchAttack() {
+    if (game.attackJoystick.direction == JoystickDirection.idle) {
+      isFiring = false;
+      return;
+    }
+
+    angle = game.attackJoystick.delta.screenAngle();
+    isFiring = true;
   }
 }
