@@ -79,7 +79,7 @@ class Enemy extends SpriteComponent
     final distance = position.distanceTo(playerPosition);
 
     velocity = direction.normalized() * speed;
-    isFiring = distance <= 550;
+    isFiring = distance <= 550 && SpawnUtil.random.nextInt(50) == 5;
 
     if (distance <= 550 && distance >= 500) {
       return;
