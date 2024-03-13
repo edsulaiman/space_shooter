@@ -25,7 +25,7 @@ class Player extends SpriteComponent
   double projectileSpeed = 2000;
 
   @override
-  int firingCooldown = 200;
+  int firingCooldown = 100;
 
   @override
   bool isFiring = false;
