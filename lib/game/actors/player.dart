@@ -15,9 +15,6 @@ class Player extends SpriteComponent
   late final SpriteSheet spriteSheet;
 
   @override
-  String projectileType = "player";
-
-  @override
   double speed = 1000;
 
   @override
@@ -25,12 +22,6 @@ class Player extends SpriteComponent
 
   @override
   int firingCooldown = 200;
-
-  @override
-  bool isFiring = false;
-
-  @override
-  bool isFiringCooldown = false;
 
   @override
   Future<void> onLoad() async {

@@ -18,9 +18,6 @@ mixin SpaceShip<ProjectileTarget> on PositionComponent
   /// Current space ship health.
   int health = 100;
 
-  /// Projectile type when firing.
-  String projectileType = "";
-
   /// Speed when moving.
   double speed = 1000;
 
@@ -73,7 +70,6 @@ mixin SpaceShip<ProjectileTarget> on PositionComponent
 
     final projectile = Projectile<ProjectileTarget>(
       speed: projectileSpeed,
-      projectileType: projectileType,
       position: projectilePosition,
       angle: projectileAngle,
       facing: ProjectileFacing.top,

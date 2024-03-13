@@ -20,7 +20,6 @@ class Projectile<T> extends SpriteComponent
     with HasGameReference<GameEntry>, CollisionCallbacks {
   Projectile({
     required this.speed,
-    required this.projectileType,
     required Vector2 position,
     required double angle,
     required Vector2 size,
@@ -34,13 +33,14 @@ class Projectile<T> extends SpriteComponent
   late Vector2 velocity;
   late Timer destroyTimer;
 
-  final String projectileType;
   final double speed;
   final ProjectileFacing facing;
 
   @override
   Future<void> onLoad() async {
     destroyTimer = Timer(5, onTick: () => removeFromParent());
+
+    final projectileType = T == Enemy ? "player" : "enemy";
 
     if (T == Enemy) {
       Audio.playShootSfx();

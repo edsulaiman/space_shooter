@@ -14,6 +14,7 @@ class GameWorld extends World with HasGameReference<GameEntry> {
   final Player player = Player();
 
   int enemyPerSpawn = 5;
+  int enemyDifficulty = 1;
   final enemySpawnDistance = 1000.0;
 
   @override
@@ -28,7 +29,12 @@ class GameWorld extends World with HasGameReference<GameEntry> {
 
     difficultyInterval = Timer(
       30,
-      onTick: () => enemyPerSpawn += 1,
+      onTick: () {
+        enemyPerSpawn += 1;
+        if (enemyDifficulty < Enemy.maxDifficulty) {
+          enemyDifficulty += 1;
+        }
+      },
       repeat: true,
     );
 
@@ -51,7 +57,11 @@ class GameWorld extends World with HasGameReference<GameEntry> {
         playerPosition,
       );
 
-      final enemy = Enemy(position: enemyPosition);
+      final enemy = Enemy(
+        position: enemyPosition,
+        difficulty: enemyDifficulty,
+      );
+
       add(enemy);
     }
   }

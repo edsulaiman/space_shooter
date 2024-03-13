@@ -12,38 +12,34 @@ import 'player.dart';
 
 class Enemy extends SpriteComponent
     with HasGameReference<GameEntry>, SpaceShip<Player> {
-  Enemy({required Vector2 position}) : super(position: position);
+  Enemy({
+    required Vector2 position,
+    required this.difficulty,
+  }) : super(position: position);
+
+  static const maxDifficulty = 50;
 
   late final SpriteSheet spriteSheet;
+
+  final int difficulty;
 
   Vector2 velocity = Vector2.all(0);
 
   @override
-  String projectileType = "enemy";
+  double speed = 1000;
 
   @override
-  int health = 3;
-
-  @override
-  double speed = 500;
-
-  @override
-  double projectileSpeed = 700;
+  double projectileSpeed = 2000;
 
   @override
   int firingCooldown = 1000;
-
-  @override
-  bool isFiring = false;
-
-  @override
-  bool isFiringCooldown = false;
 
   @override
   Future<void> onLoad() async {
     final shipImage = await Flame.images.load("ship/enemy_ship.png");
     sprite = Sprite(shipImage);
     size = Vector2.all(75);
+    health = difficulty;
 
     add(RectangleHitbox());
 
@@ -66,7 +62,7 @@ class Enemy extends SpriteComponent
     final blast = DieEffect(position: position);
     game.world.add(blast);
 
-    final coinCount = 1 + SpawnUtil.random.nextInt(3);
+    final coinCount = 1 + SpawnUtil.random.nextInt(difficulty.clamp(1, 10));
     for (int i = 0; i < coinCount; i++) {
       final coin = Coin(position: position);
       game.world.add(coin);
@@ -79,7 +75,8 @@ class Enemy extends SpriteComponent
     final distance = position.distanceTo(playerPosition);
 
     velocity = direction.normalized() * speed;
-    isFiring = distance <= 550 && SpawnUtil.random.nextInt(50) == 5;
+    isFiring = distance <= 550 &&
+        SpawnUtil.random.nextInt(2 + maxDifficulty - difficulty) == 1;
 
     if (distance <= 550 && distance >= 500) {
       return;
