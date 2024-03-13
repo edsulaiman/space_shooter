@@ -26,7 +26,7 @@ class Enemy extends SpriteComponent
   Vector2 velocity = Vector2.all(0);
 
   @override
-  double speed = 1000;
+  double speed = 700;
 
   @override
   double projectileSpeed = 2000;
